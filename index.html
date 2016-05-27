@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Electron API Demos</title>
+  <link rel="stylesheet" href="appStyles.css">
+</head>
+<body>
+	Hello World
+	<p class="stats"></p>
+  
+	<table>
+	  <tr>
+		<td>Service Url </td>
+		<td><input class="wideTextBox" type="url" id="serviceUrl" /></td>
+	  </tr>
+	  
+	  <tr>
+	  <td>Service Method</td>
+		<td>
+		<select name="methodName" id="methodName">
+		  <option value="get">GET</option>
+		  <option value="post">POST</option>
+		</select>
+		</td>
+	  </tr>
+	  
+	  <tr>
+	  <td>Data</td>
+		<td><input type="text" name="data" id="inputData" /></td>
+	  </tr>
+	  
+	 <!-- <tr>
+		<td><input type="submit" name="Submit" id="submit"/>
+	  </tr> -->
+	  <tr>
+		<td><button id="runCollection" name="run">RUN</button></td>
+	  </tr>
+	  
+	  </table>
+		<div id="outputData">
+			
+		</div>
+	<div>
+	<button class="collectionBtn" id="addToCollection" > Add this Request API to your Collection </button>
+	</div>
+	
+	<div align="right" id="apiCollection">
+	  Here is your Collection
+	</div>
+	
+	<a btn href="#" id="closeBtn" style="position: fixed; bottom: 0; width:100%;" >
+	 Close Window
+	</a>
+
+<script src="./jquery-1.8.2.js"></script>
+<script src="./myScript.js"></script>
+
+</body>
+</html>
