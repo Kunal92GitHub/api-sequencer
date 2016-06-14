@@ -1,15 +1,25 @@
-$( document ).ready(function() {
-
-    // Display some statistics about this computer, using node's os module.
-
-    var os = require('os');
-    var prettyBytes = require('pretty-bytes');
-	var request = require('request');
-	//var request = require('ajax-request');
-
-    $('.stats').append('Number of cpu cores: <span>' + os.cpus().length + '</span>');
-    $('.stats').append('Free memory: <span>' + prettyBytes(os.freemem())+ '</span>');
+/* const remote = require('electron').remote;
 	
+document.getElementById("max-btn").addEventListener("click", function (e) {
+   var appWindow = remote.getCurrentWindow();
+   if (!appWindow.isMaximized()) {
+	   appWindow.maximize();          
+   } else {
+	   appWindow.unmaximize();
+   }
+});
+
+document.getElementById("close-btn").addEventListener("click", function (e) {
+   var appWindow = remote.getCurrentWindow();
+   appWindow.close();
+}); */
+
+$( document ).ready(function() {
+	
+	const remote = require('electron').remote;
+	var appWindow = remote.getCurrentWindow();
+	
+	var request = require('request');
 	var fs = require('fs');
 
 	var outputFilename = './tmp/collected-apis.json';
@@ -38,13 +48,54 @@ $( document ).ready(function() {
 	$('#closeBtn').click( function() {
 		console.log('Writting to file: '+outputFilename);
 		fs.writeFile(outputFilename, JSON.stringify(requestObjArray, null, 4), function(err) {
-		if(err) {
-			console.log(err);
+			if(err) {
+				console.log(err);
+			} else {
+				console.log("JSON saved to "+outputFilename);
+				window.top.close();
+			}
+		});
+	});
+	
+	$('#fullscreenBtn').click( function() {
+		if (!appWindow.isMaximized()) {
+			appWindow.maximize();
+			$('#fullscreenExitBtn').removeClass('hidden');
+			$(this).addClass('hidden');
 		} else {
-			console.log("JSON saved to "+outputFilename);
-			window.top.close();
+			console.log('The window is in maximized mode.');
 		}
-	}); 
+	});
+	
+	$('#fullscreenExitBtn').click( function() {
+		if (appWindow.isMaximized()) {
+			appWindow.unmaximize();
+			$('#fullscreenBtn').removeClass('hidden');
+			$(this).addClass('hidden');
+		} else {
+			console.log('The window is in unmaximized mode.'); 
+		}
+	});
+	
+	$('#buildBtn').click( function() {
+		if (!appWindow.webContents.isDevToolsOpened()) {
+			appWindow.webContents.openDevTools();
+		}
+	});
+	
+	$('#sendBtn').click( function() {
+		
+		$('#progressBar').removeClass('el-loading-done').addClass("el-loading");
+		$('#responseData').html('');
+		setTimeout(function() {
+			$('#progressBar').addClass("el-loading-done");
+			$('#responseData').html('<p>Response Data<br><small>This is the expected behavior from a web service call. Once the requested server responds, this will be used to show the content.</small></p>');
+		}, 2000);
+	});
+	
+	$(".dropdown-menu li a").click(function(){
+		$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="icon margin-left-sm">keyboard_arrow_down</span>');
+		$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 	});
 	
 	$('#runCollection').click( function() {
