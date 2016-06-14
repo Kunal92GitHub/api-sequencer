@@ -2,58 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Electron API Demos</title>
+  <title>API Sequencer</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/material-base.css">
+  
+  <link rel="stylesheet" href="css/fonts/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-	Hello World
-	<p class="stats"></p>
-  
-	<table>
-	  <tr>
-		<td>Service Url </td>
-		<td><input class="wideTextBox" type="url" id="serviceUrl" /></td>
-	  </tr>
-	  
-	  <tr>
-	  <td>Service Method</td>
-		<td>
-		<select name="methodName" id="methodName">
-		  <option value="get">GET</option>
-		  <option value="post">POST</option>
-		</select>
-		</td>
-	  </tr>
-	  
-	  <tr>
-	  <td>Data</td>
-		<td><input type="text" name="data" id="inputData" /></td>
-	  </tr>
-	  
-	 <!-- <tr>
-		<td><input type="submit" name="Submit" id="submit"/>
-	  </tr> -->
-	  <tr>
-		<td><button id="runCollection" name="run">RUN</button></td>
-	  </tr>
-	  
-	  </table>
-		<div id="outputData">
-			
+<div class="container-fluid as-titleBar">
+	<div class="row margin-no">
+		<div class="col-md-2 col-md-offset-10 col-sm-4 col-sm-offset-8 padding-right-no as-windowActionBtnWrapper">
+			<button type="button" class="btn btn-red pull-right" id="closeBtn"><span class="icon">close</span></button>
+			<button type="button" class="btn btn-flat hidden pull-right" id="fullscreenExitBtn"><span class="icon">fullscreen_exit</span></button>
+			<button type="button" class="btn btn-flat pull-right" id="fullscreenBtn"><span class="icon">fullscreen</span></button>
+			<button type="button" class="btn btn-amber pull-right" id="buildBtn"><span class="icon">build</span></button>
 		</div>
-	<div>
-	<button class="collectionBtn" id="addToCollection" > Add this Request API to your Collection </button>
 	</div>
-	
-	<div align="right" id="apiCollection">
-	  Here is your Collection
+</div>
+<div class="container">
+	<div class="form-group form-group-brand">
+		<div class="row">
+			<div class="col-md-2 padding-right-no">
+				<div class="dropdown dropdown-inline as-dropdown">
+					<button class="btn dropdown-toggle-btn waves-attach waves-effect" data-toggle="dropdown" aria-expanded="false">PROTOCOL<span class="icon margin-left-sm">keyboard_arrow_down</span></button>
+					<ul class="dropdown-menu nav">
+						<li>
+							<a class="waves-attach waves-effect" href="javascript:void(0)">HTTP</a>
+						</li>
+						<li>
+							<a class="waves-attach waves-effect" href="javascript:void(0)">HTTPS</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 padding-no">
+				<input class="form-control" type="url" id="serviceUrl" placeholder="Endpoint URL" />
+			</div>
+		</div>
+		<div class="row margin-top">
+			<div class="col-md-12 padding-right-no">
+			<textarea class="form-control textarea-autosize requestBody" rows="1" name="data" id="inputData" placeholder="Request Body"></textarea>
+			</div>
+		</div>
 	</div>
-	
-	<a btn href="#" id="closeBtn" style="position: fixed; bottom: 0; width:100%;" >
-	 Close Window
-	</a>
+	<div class="row">
+		<div class="col-md-2 padding-right-no">
+			<div class="dropdown dropdown-inline as-dropdown">
+				<button class="btn dropdown-toggle-btn waves-attach waves-effect" data-toggle="dropdown" aria-expanded="false">METHOD<span class="icon margin-left-sm">keyboard_arrow_down</span></button>
+				<ul class="dropdown-menu nav">
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">GET</a>
+					</li>
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">POST</a>
+					</li>
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">PUT</a>
+					</li>
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">DELETE</a>
+					</li>
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">OPTIONS</a>
+					</li>
+					<li>
+						<a class="waves-attach waves-effect" href="javascript:void(0)">HEAD</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<p class="margin-top-no">
+				<a class="btn btn-flat waves-attach waves-button waves-light waves-effect tippedElement" data-original-title="Advenced options"><span class="icon icon-lg">settings</span></a>
+				<a class="btn btn-flat waves-attach waves-button waves-light waves-effect tippedElement" data-original-title="Add to collection"><span class="icon icon-lg">playlist_add</span></a>
+			</p>
+		</div>
+		<div class="col-md-1 col-md-offset-7 padding-right-no">
+			<p class="margin-top-no pull-right">
+				<a class="btn btn-brand waves-attach waves-button waves-light waves-effect" id="sendBtn">Send</a>
+			</p>
+		</div>
+	</div>
+	<div class="row margin-top">
+		<div class="col-md-12 padding-right-no">
+			<div id="progressBar">
+				<div class="el-loading-indicator el-loading-indicator-linear as-loading-indicator">
+					<div class="progress progress-brand progress-position-absolute-top">
+						<div class="progress-bar-indeterminate"></div>
+					</div>
+				</div>
+			</div>
+			<div class="tile-sub" id="responseData"></div>
+		</div>
+	</div>
+</div>
 
-<script src="js/jquery-1.8.2.js"></script>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/material-base.js"></script>
 <script src="js/app.js"></script>
 
 </body>

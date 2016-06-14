@@ -1,8 +1,8 @@
 {
-  "name": "my-electron-app",
-  "productName": "My Electron App",
+  "name": "api-sequencer",
+  "productName": "API Sequencer",
   "version": "1.0.1",
-  "description": "Electron interactive API demos",
+  "description": "Sequence any web service calls with the power of runtime dynamics.",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -11,20 +11,6 @@
   },
   "author": "Kunal",
   "license": "MIT",
-  "devDependencies": {
-    "chai": "^3.4.1",
-    "chai-as-promised": "^5.1.0",
-    "devtron": "^1.0.0",
-    "electron-packager": "^7.0.1",
-    "electron-prebuilt": "~1.0.2",
-    "electron-winstaller": "^2.2.0",
-    "mocha": "^2.3.4",
-    "request": "^2.70.0",
-    "rimraf": "^2.5.2",
-    "signcode": "^0.4.0",
-    "spectron": "~3.0.0",
-    "standard": "^6.0.8"
-  },
   "dependencies": {
     "electron-json-storage": "^2.0.0",
     "electron-shortcut-normalizer": "^1.0.0",

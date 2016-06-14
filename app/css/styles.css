@@ -10,9 +10,45 @@
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 .wideTextBox {
 	width: 600px;
+}
+
+.fullWidth {
+	width: 100% !important;
+}
+
+.as-windowActionBtnWrapper .btn{
+	padding: 2px 6px !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+	margin: 0px !important;
+}
+
+.as-dropdown{
+	width: 125px !important;
+}
+.as-dropdown button{
+	width: 123px !important;
+}
+
+.as-loading-indicator {
+	box-shadow: none !important;
+}
+
+.as-titleBar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.btn {
+  -webkit-app-region: no-drag;
+}
+
+textarea.requestBody {
+	max-height: 200px;
+	max-width: 100%;
 }
